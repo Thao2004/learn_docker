@@ -1,0 +1,20 @@
+# Start with base image
+FROM node:22-alpine
+
+# Install the http-server globally inside the image
+RUN npm instal -g http-server
+
+# Set /app as the working directory inside the container
+WORKDIR /app
+
+# Copy project files from local machine into /app
+COPY . /app
+
+# Document that the container will listen on port 8080
+EXPOSE 8080
+
+# Define the default command to start http-server
+# "." = serve the current directory (/app)
+# -p 8080 = listen on port 8080
+# -c-1 = disable caching for live reload convenience
+CMD ["http-server", ".", "-p", "8080", "-c-1"]

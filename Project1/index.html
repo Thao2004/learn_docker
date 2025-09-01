@@ -4,11 +4,49 @@
         <title>Intro to Docker</title>
 
         <style>
+            body {
+                background-color: black;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+            }
             
+            .content {
+                font-size: 30px;
+                color: white;
+            }
+
+            .cursor {
+                animation: blink 0.8s steps(1) infinite;
+            }
+
+            @keyframes blink {
+                50% { opacity: 0; }
+            }
         </style>
     </head>
 
     <body>
-        <h1>Learn how to use Docker</h1>
+        <div class="content">
+            <h1><span id="typing"></span><span class="cursor">|</span></h1>
+        </div>
+
+        <script>
+            const text = "Learn how to use Docker";
+            const typing = document.getElementById("typing");
+            let i = 0;
+
+            function typingProcess() {
+                if (i <= text.length) {
+                    typing.textContent = text.substring(0, i);
+                    i++;
+                    setTimeout(typingProcess, 180);
+                }
+            }
+
+            typingProcess();
+        </script>
     </body>
 </html>
